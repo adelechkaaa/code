@@ -1,0 +1,128 @@
+def perevod(s):
+    if s.count('.') == 0:
+        return ['all', len(s)]
+    elif s[0] == '#' and s[-1] == '#':
+        k = 0
+        for x in s:
+            if x == '#':
+                k += 1
+            else:
+                break
+        return ['wind', k, s.count('.'), len(s)-k-s.count('.')]
+    elif s[0] == '#':
+        return ['left', s.count('#'), s.count('.')]
+    elif s[-1] == '#':
+        return ['right', s.count('.'), s.count('#')]
+    else:
+        return ['No', 0]
+
+def ubrat_povtor(w):
+    result = []
+    now = [0]
+    for x in w:
+        if x != now:
+            result.append(x)
+            now = x
+    return result
+
+
+
+n = int(input())
+a = []
+for i in range(n):
+    a.append(input())
+k1 = 0
+print()
+#print(a)
+for i in range(n):
+    if a[i].count("#") == 0:
+        k1 += 1
+    else:
+        break
+k2 = 0
+for i in range(n-1, -1, -1):
+    if a[i].count("#") == 0:
+        k2 += 1
+    else:
+        break
+if k1 != 0 and k2 != 0:
+    b = a[k1:-k2]
+elif k1 == 0 and k2 != 0:
+    b = a[:-k2]
+elif k1 != 0 and k2 == 0:
+    b = a[k1:]
+else:
+    b = a[:]
+for x in b:
+    print(x)
+print()
+
+k1, k2 = 0, 0
+for i in range(n):
+    k = True
+    for j in range(n):
+        if a[j][i] == '#':
+            k = False
+    if k:
+        k1 += 1
+    else:
+        break
+    """if not k:
+        break"""
+
+for i in range(n-1, -1, -1):
+    k = True
+    for j in range(n):
+        if a[j][i] == '#':
+            k = False
+    if k:
+        k2 += 1
+    else:
+        break
+
+c = []
+if k1 != 0 and k2 != 0:
+    for x in b:
+        c.append(x[k1:-k2])
+elif k1 == 0 and k2 != 0:
+    for x in b:
+        c.append(x[:-k2])
+elif k1 != 0 and k2 == 0:
+    for x in b:
+        c.append(x[k1:])
+else:
+    c = b[:]
+for x in c:
+    print(x)
+print()
+per = []
+for x in c:
+    per.append(perevod(x))
+    print(perevod(x))
+print()
+ub = ubrat_povtor(per)
+print(ub)
+
+if len(ub) == 1:
+    print('I')
+elif len(ub) == 2:
+    if (ub[0][0] == 'left') and (ub[1][0] == 'all'):
+        print('L')
+    else:
+        print('X')
+elif len(ub) == 3:
+    if (ub[0] == ub[2]) and (ub[0][0] == 'wind') and (ub[1][0] == 'all'):
+        print('H')
+    elif (ub[0] == ub[2]) and (ub[0][0] == 'all') and (ub[1][0] == 'wind'):
+        print('O')
+    elif (ub[0] == ub[2]) and (ub[0][0] == 'all') and (ub[1][0] == 'left'):
+        print('C')
+    else:
+        print('X')
+elif len(ub) == 4:
+    if (ub[0] == ub[2]) and (ub[0][0] == 'all') and (ub[1][0] == 'wind') and (ub[3][0] == 'left'):
+        print('P')
+    else:
+        print('X')
+else:
+    print('X')

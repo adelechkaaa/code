@@ -1,11 +1,4 @@
-def pref(w):
-    p = (len(w)+1) * [0]
-    for i in range(1, len(p)):
-        p[i] = p[i-1] + w[i-1]
-    return p
-
 n = int(input())
-
 a = list(map(int, input().split()))
 a.sort()
 #n = len(a)

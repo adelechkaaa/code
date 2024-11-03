@@ -1,0 +1,22 @@
+g = 0
+n, c = map(int, input().split())
+s = input()
+max_len = 0
+left,  right = 0, 0
+col_a, col_b = 0, 0
+while right < n:
+    if s[right] == 'b':
+        col_b += 1
+        g += col_a
+        while g > c:
+            left += 1
+            if s[left - 1] == 'a':
+                col_a -= 1
+                g -= col_b
+            elif s[left - 1] == 'b':
+                col_b -= 1
+    elif s[right] == 'a':
+        col_a += 1
+    max_len = max(max_len, right - left + 1)
+    right += 1
+print(max_len)

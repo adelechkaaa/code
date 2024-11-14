@@ -1,0 +1,304 @@
+from collections import deque as dq
+a, b, c, d = dq(), dq(), dq(), dq()
+n = int(input())
+g1, g2 = map(int, input().split())
+g1, g2 = min(g1, g2), max(g1, g2)
+rover = []
+for i in range(n):
+    x, y = map(int, input().split())
+    rover.append((x, y, i))
+rover.sort(key=lambda e: e[1])
+answer = [-1] * n
+if (g1 == 1) and (g2 == 3):
+    g1, g2 = min(g1, g2), max(g1, g2)
+    v1, v2 = 2, 4
+    i, t = 0, 0
+    while i < n:
+        t += 1
+        while rover[i][1] == t:
+            if rover[i][0] == 1:
+                a.append(rover[i])
+            elif rover[i][0] == 2:
+                b.append(rover[i])
+            elif rover[i][0] == 3:
+                c.append(rover[i])
+            else:
+                d.append(rover[i])
+            i += 1
+            if i == n:
+                break
+        if a or c:
+            if a:
+                w = a.popleft()
+                answer[w[2]] = t
+            if c:
+                w = c.popleft()
+                answer[w[2]] = t
+        elif b or d:
+            if b:
+                w = b.popleft()
+                answer[w[2]] = t
+            if d:
+                w = d.popleft()
+                answer[w[2]] = t
+        if i == n:
+            break
+    while a or b or c or d:
+        t += 1
+        if a or c:
+            if a:
+                w = a.popleft()
+                answer[w[2]] = t
+            if c:
+                w = c.popleft()
+                answer[w[2]] = t
+        elif b or d:
+            if b:
+                w = b.popleft()
+                answer[w[2]] = t
+            if d:
+                w = d.popleft()
+                answer[w[2]] = t
+
+elif (g1 == 2) and (g2 == 4):
+    g1, g2 = min(g1, g2), max(g1, g2)
+    i, t = 0, 0
+    while i < n:
+        t += 1
+        while rover[i][1] == t:
+            if rover[i][0] == 1:
+                a.append(rover[i])
+            elif rover[i][0] == 2:
+                b.append(rover[i])
+            elif rover[i][0] == 3:
+                c.append(rover[i])
+            else:
+                d.append(rover[i])
+            i += 1
+            if i == n:
+                break
+        if b or d:
+            if b:
+                w = b.popleft()
+                answer[w[2]] = t
+            if d:
+                w = d.popleft()
+                answer[w[2]] = t
+        elif a or c:
+            if a:
+                w = a.popleft()
+                answer[w[2]] = t
+            if c:
+                w = c.popleft()
+                answer[w[2]] = t
+        if i == n:
+            break
+    while a or b or c or d:
+        t += 1
+        if b or d:
+            if b:
+                w = b.popleft()
+                answer[w[2]] = t
+            if d:
+                w = d.popleft()
+                answer[w[2]] = t
+        elif a or c:
+            if a:
+                w = a.popleft()
+                answer[w[2]] = t
+            if c:
+                w = c.popleft()
+                answer[w[2]] = t
+
+elif (g1 == 1) and (g2 == 2):
+    g1, g2 = min(g1, g2), max(g1, g2)
+    v1, v2 = 3, 4
+    i, t = 0, 0
+    while i < n:
+        t += 1
+        while rover[i][1] == t:
+            if rover[i][0] == 1:
+                a.append(rover[i])
+            elif rover[i][0] == 2:
+                b.append(rover[i])
+            elif rover[i][0] == 3:
+                c.append(rover[i])
+            else:
+                d.append(rover[i])
+            i += 1
+            if i == n:
+                break
+        if a:
+            w = a.popleft()
+            answer[w[2]] = t
+        elif b:
+            w = b.popleft()
+            answer[w[2]] = t
+        elif c:
+            w = c.popleft()
+            answer[w[2]] = t
+        elif d:
+            w = d.popleft()
+            answer[w[2]] = t
+        if i == n:
+            break
+    while a or b or c or d:
+        t += 1
+        if a:
+            w = a.popleft()
+            answer[w[2]] = t
+        elif b:
+            w = b.popleft()
+            answer[w[2]] = t
+        elif c:
+            w = c.popleft()
+            answer[w[2]] = t
+        elif d:
+            w = d.popleft()
+            answer[w[2]] = t
+
+elif (g1 == 2) and (g2 == 3):
+    g1, g2 = min(g1, g2), max(g1, g2)
+    v1, v2 = 1, 4
+    i, t = 0, 0
+    while i < n:
+        t += 1
+        while rover[i][1] == t:
+            if rover[i][0] == 1:
+                a.append(rover[i])
+            elif rover[i][0] == 2:
+                b.append(rover[i])
+            elif rover[i][0] == 3:
+                c.append(rover[i])
+            else:
+                d.append(rover[i])
+            i += 1
+            if i == n:
+                break
+        if b:
+            w = b.popleft()
+            answer[w[2]] = t
+        elif c:
+            w = c.popleft()
+            answer[w[2]] = t
+        elif d:
+            w = d.popleft()
+            answer[w[2]] = t
+        elif a:
+            w = a.popleft()
+            answer[w[2]] = t
+
+        if i == n:
+            break
+    while a or b or c or d:
+        t += 1
+        if b:
+            w = b.popleft()
+            answer[w[2]] = t
+        elif c:
+            w = c.popleft()
+            answer[w[2]] = t
+        elif d:
+            w = d.popleft()
+            answer[w[2]] = t
+        elif a:
+            w = a.popleft()
+            answer[w[2]] = t
+
+elif (g1 == 3) and (g2 == 4):
+    g1, g2 = min(g1, g2), max(g1, g2)
+    v1, v2 = 3, 4
+    i, t = 0, 0
+    while i < n:
+        t += 1
+        while rover[i][1] == t:
+            if rover[i][0] == 1:
+                a.append(rover[i])
+            elif rover[i][0] == 2:
+                b.append(rover[i])
+            elif rover[i][0] == 3:
+                c.append(rover[i])
+            else:
+                d.append(rover[i])
+            i += 1
+            if i == n:
+                break
+        if c:
+            w = c.popleft()
+            answer[w[2]] = t
+        elif d:
+            w = d.popleft()
+            answer[w[2]] = t
+        elif a:
+            w = a.popleft()
+            answer[w[2]] = t
+        elif b:
+            w = b.popleft()
+            answer[w[2]] = t
+        if i == n:
+            break
+    while a or b or c or d:
+        t += 1
+        if c:
+            w = c.popleft()
+            answer[w[2]] = t
+        elif d:
+            w = d.popleft()
+            answer[w[2]] = t
+        elif a:
+            w = a.popleft()
+            answer[w[2]] = t
+        elif b:
+            w = b.popleft()
+            answer[w[2]] = t
+
+elif (g1 == 1) and (g2 == 4):
+    g1, g2 = min(g1, g2), max(g1, g2)
+    v1, v2 = 2, 3
+    i, t = 0, 0
+    while i < n:
+        t += 1
+        while rover[i][1] == t:
+            if rover[i][0] == 1:
+                a.append(rover[i])
+            elif rover[i][0] == 2:
+                b.append(rover[i])
+            elif rover[i][0] == 3:
+                c.append(rover[i])
+            else:
+                d.append(rover[i])
+            i += 1
+            if i == n:
+                break
+        if d:
+            w = d.popleft()
+            answer[w[2]] = t
+        elif a:
+            w = a.popleft()
+            answer[w[2]] = t
+        elif b:
+            w = b.popleft()
+            answer[w[2]] = t
+        elif c:
+            w = c.popleft()
+            answer[w[2]] = t
+
+        if i == n:
+            break
+    while a or b or c or d:
+        t += 1
+        if d:
+            w = d.popleft()
+            answer[w[2]] = t
+        elif a:
+            w = a.popleft()
+            answer[w[2]] = t
+        elif b:
+            w = b.popleft()
+            answer[w[2]] = t
+        elif c:
+            w = c.popleft()
+            answer[w[2]] = t
+
+for x in answer:
+    print(x)
